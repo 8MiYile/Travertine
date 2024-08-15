@@ -27,8 +27,11 @@ jobs:
           git config --global user.email "no-reply@github.com"
           git config --global user.name "Github Actions"
           ./travertine p
+      - name: verify source code
+        run: mvn clean javadoc:javadoc package
       - name: build
-        run: mvn build javadoc:javadoc package
+        run: |
+          ./travertine b
       - name: Publish to Actions Artifact
         uses: actions/upload-artifact@v4
         with:
